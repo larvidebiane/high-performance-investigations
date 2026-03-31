@@ -5,7 +5,7 @@ CXX := g++
 CXXFLAGS := -O3 -g -std=c++17 -Wall -Wextra -pedantic
 LDFLAGS :=
 
-TARGET := kernel-bypass
+TARGET := ≈
 SRC := kernel-bypass.cpp
 
 

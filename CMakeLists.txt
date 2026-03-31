@@ -3,5 +3,5 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(exe-kernel-bypass kernel-bypass.cpp)
-target_compile_options(exe-kernel-bypass PRIVATE -O3 -march=native)
+add_executable(kernel-bypass kernel-bypass.cpp)
+target_compile_options(kernel-bypass PRIVATE -O3 -march=native)
