@@ -1,2 +1,9 @@
-Some investigation not directly related to GATTACA SOFTWARE
-We investigate some basic questions around performance
+** DISCLAIMER **
+Some investigations around performance
+This code is made available to anyone and is not related to GATTACA SOFTWARE
+
+** Usage **
+
+
+** Makefile **
+If you don't have CMake, you can use the makefile to generate the binary
