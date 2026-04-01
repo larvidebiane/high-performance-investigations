@@ -1,72 +1,64 @@
-DISCLAIMER
-Some investigations around performance.
-This code is made available to anyone and is not related to GATTACA SOFTWARE.
+# UDP Throughput Experiments
 
-Usage
+## Disclaimer
 
-We provide a helper script run_udp_test.sh that runs the UDP receiver + sender locally and aggregates performance statistics (pps, Mb/s).
+This repository contains personal investigations around UDP performance and packet processing.
 
-Build
-CMake (macOS)
+It is made available publicly for educational and experimental purposes only. It is not related to GATTACA SOFTWARE.
 
-Build the receiver in release mode:
+Some initial scaffolding was accelerated with LLM assistance. The experiment design, profiling direction, bottleneck analysis, and iteration decisions are my own.
 
+---
+
+## Overview
+
+The goal of this project is to investigate what "kernel bypass" really buys in practice for UDP workloads:
+
+- packets per second (PPS)
+- throughput
+- latency
+- jitter
+
+The approach is deliberately simple:
+
+1. build a clean UDP baseline first,
+2. identify the first real bottleneck,
+3. only then compare against more advanced paths such as kernel bypass.
+
+At this stage, the focus is on understanding the behavior of the standard kernel/socket path before moving to alternatives such as DPDK or AF_XDP.
+
+---
+
+## Repository Status
+
+This is an experiment repository, not a polished networking framework.
+
+The code is intended to support controlled measurements and bottleneck isolation. Some parts are intentionally simple.
+
+---
+
+## Usage
+
+A helper script, `run_udp_test.sh`, is provided to run the UDP receiver and sender locally and aggregate performance statistics such as:
+
+- packets per second
+- throughput in Mb/s
+
+Running both ends on the same machine removes public network bandwidth as a confounding factor and makes it easier to study the OS/kernel path itself.
+
+---
+
+## Build
+
+### CMake (macOS)
+
+Build in release mode:
+
+```bash
 cmake -B cmake-build-release -DCMAKE_BUILD_TYPE=Release
 cmake --build cmake-build-release
-Makefile (Linux / no CMake)
 
-If you don’t have CMake, you can use the Makefile to build the receiver binary.
-
-
-
-
-**********************************************************
-************
-*** Goal ***
-************
-Investigate “kernel bypass” — the thing you keep hearing about in HFT — and understand what it really buys (PPS, latency, jitter), starting from a clean UDP baseline.
-
-******************
-Work on 31/03/2026
-*******************
-
-1) First reality check: remote Mac → VPS
-
-I started by sending UDP from my Mac to a Debian VPS.
-I quickly hit a hard ceiling: the VPS path looked bandwidth-limited / shaped around ~5–6 Mb/s.
-Conclusion: as long as I’m testing over the public Internet to that VPS, I’m mostly measuring network shaping, not kernel/socket limits. So that’s not the right setup to learn “kernel bypass”.
-
-2) Move the test to localhost to remove the network bottleneck
-
-I switched to running sender/receiver on the same machine so I could actually stress the OS/kernel path.
-That immediately exposed a configuration trap: I was sending UDP_PAYLOAD_SIZE=512 but receiving with UDP_BUFFER_SIZE=8.
-Result: the receiver was silently truncating each datagram, so server Mb/s looked completely wrong (bytes/packet ≈ 8). PPS could look “ok” while throughput was nonsense.
-Fix: enforce the only sane rule — recv buffer must be ≥ payload — and fail fast if not.
-
-3) Tooling cleanup (so benchmarks aren’t polluted by config drift)
-
-I removed .env logic from the Python sender because it created hidden state and mismatches (CLI vs env vs scripts).
-I made the C++ receiver strict: no defaults, explicit flags, and a hard guard buffer >= payload.
-I made the bash runner “production-ish”: fail fast, and detect receiver startup failure properly (background process failures don’t stop a script by themselves).
-
-4) Scale test: where is the real bottleneck?
-
-At 20k PPS localhost, receiver tracks the sender closely (small drop rate, normal for UDP + OS scheduling).
-When I asked for 500k PPS, I did not get 500k PPS: the Python sender topped out around ~135k PPS.
-The receiver tracked that rate closely, so the bottleneck at that point was clearly the Python generator, not the receiver/kernel.
-Where I’m at now (facts)
-Remote tests to the VPS are dominated by bandwidth shaping → not useful for kernel bypass investigation.
-Localhost tests are valid now (config fixed, tools strict).
-Python is not a credible sender for high PPS; it caps far below the range where “kernel bypass” becomes relevant.
-
-What I’ll do tomorrow
-Write a C/C++ UDP sender (CLI-only, deterministic) to replace Python.
-Goal: actually push into 500k PPS, 1M PPS territory without the interpreter choking first.
-Run a controlled PPS sweep locally:
-200k → 500k → 1M+ PPS
-Measure client vs server PPS to quantify drops and find the real ceiling.
-If drops show up early:
-Increase/verify socket receive buffer (SO_RCVBUF, and print actual value with getsockopt).
-Reduce runtime logging noise (final stats only) to avoid jitter artifacts.
-
-Once the pure kernel/socket path is clearly characterized, then it makes sense to compare against a true kernel-bypass path (DPDK/AF_XDP/etc.) and see what changes in PPS/latency/jitter.
+### From Makefile
+make clean
+make all
+make run

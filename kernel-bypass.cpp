@@ -2,11 +2,10 @@
 // Created by Larvi DEBIANE on 31/03/2026
 //
 // UDP Receive Benchmark
-// Strict parametric version
-// Non-blocking + full socket drain
-// HARD GUARD: buffer_size >= payload_size
+// Simple benchmark receiver used to measure RX throughput in a controlled TX/RX setup.
+// This implementation is intentionally simple and is meant for bottleneck isolation,
+// not as a fully optimized production receiver.
 //
-
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netinet/in.h>

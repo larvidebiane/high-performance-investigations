@@ -1,4 +1,4 @@
-Running UDP benchmark 
+Running UDP benchmark
 ======================================
 Platform        : Linux
 Receiver build  : Linux Makefile
