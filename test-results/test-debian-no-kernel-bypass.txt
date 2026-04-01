@@ -1,0 +1,103 @@
+Running UDP benchmark 
+======================================
+Platform        : Linux
+Receiver build  : Linux Makefile
+
+Port            : 9000
+Duration        : 31
+Buffer size     : 2048
+Payload size    : 512
+PPS             : 500000
+======================================
+
+Starting receiver...
+=== Effective Configuration ===
+port            : 9000
+duration_seconds: 31
+buffer_size     : 2048
+payload_size    : 512
+================================
+
+RX READY port=9000
+Receiver started.
+
+Starting sender...
+[RX-running] elapsed=1.000 s, packets=193792, bytes=99221504, pps=193791, Mb/s=793.771
+[TX] t=1.0021 pps=199262 Mb/s=816.177
+[RX-running] elapsed=2.000 s, packets=401784, bytes=205713408, pps=200891, Mb/s=822.853
+[TX] t=2.00124 pps=205365 Mb/s=841.177
+[RX-running] elapsed=3.000 s, packets=593811, bytes=304031232, pps=197936, Mb/s=810.750
+[TX] t=3.00188 pps=202647 Mb/s=830.041
+[RX-running] elapsed=4.000 s, packets=763336, bytes=390828032, pps=190833, Mb/s=781.654
+[TX] t=4.00143 pps=196672 Mb/s=805.569
+[RX-running] elapsed=5.000 s, packets=999831, bytes=511913472, pps=199965, Mb/s=819.061
+[TX] t=5.00093 pps=205279 Mb/s=840.824
+[RX-running] elapsed=6.000 s, packets=1218282, bytes=623760384, pps=203046, Mb/s=831.679
+[TX] t=6.00024 pps=207799 Mb/s=851.144
+[RX-running] elapsed=7.000 s, packets=1463460, bytes=749291520, pps=209065, Mb/s=856.333
+[TX] t=7.00088 pps=213418 Mb/s=874.162
+[RX-running] elapsed=8.000 s, packets=1705364, bytes=873146368, pps=213170, Mb/s=873.145
+[TX] t=8.00144 pps=217031 Mb/s=888.96
+[RX-running] elapsed=9.000 s, packets=1956347, bytes=1001649664, pps=217371, Mb/s=890.354
+[TX] t=9.00013 pps=220945 Mb/s=904.99
+[RX-running] elapsed=10.000 s, packets=2214666, bytes=1133908992, pps=221466, Mb/s=907.127
+[TX] t=10.001 pps=224800 Mb/s=920.781
+[RX-running] elapsed=11.000 s, packets=2466413, bytes=1262803456, pps=224219, Mb/s=918.402
+[TX] t=11.0017 pps=227528 Mb/s=931.953
+[RX-running] elapsed=12.000 s, packets=2720963, bytes=1393133056, pps=226746, Mb/s=928.755
+[TX] t=12.0007 pps=230005 Mb/s=942.099
+[RX-running] elapsed=13.000 s, packets=2946852, bytes=1508788224, pps=226680, Mb/s=928.485
+[TX] t=13.0008 pps=229991 Mb/s=942.043
+[RX-running] elapsed=14.000 s, packets=3202948, bytes=1639909376, pps=228781, Mb/s=937.091
+[TX] t=14.0001 pps=232007 Mb/s=950.302
+[RX-running] elapsed=15.000 s, packets=3457775, bytes=1770380800, pps=230518, Mb/s=944.203
+[TX] t=15.0005 pps=233619 Mb/s=956.905
+[RX-running] elapsed=16.000 s, packets=3712305, bytes=1900700160, pps=232018, Mb/s=950.349
+[TX] t=16.0035 pps=234910 Mb/s=962.19
+[RX-running] elapsed=17.000 s, packets=3947465, bytes=2021102080, pps=232203, Mb/s=951.107
+[TX] t=17.001 pps=235134 Mb/s=963.108
+[RX-running] elapsed=18.000 s, packets=4206482, bytes=2153718784, pps=233693, Mb/s=957.208
+[TX] t=18.0003 pps=236643 Mb/s=969.29
+[RX-running] elapsed=19.000 s, packets=4454960, bytes=2280939520, pps=234471, Mb/s=960.395
+[TX] t=19.0017 pps=237322 Mb/s=972.069
+[RX-running] elapsed=20.000 s, packets=4677230, bytes=2394741760, pps=233861, Mb/s=957.896
+[TX] t=20.0019 pps=236666 Mb/s=969.382
+[RX-running] elapsed=21.000 s, packets=4918058, bytes=2518045696, pps=234193, Mb/s=959.255
+[TX] t=21.0015 pps=236941 Mb/s=970.509
+[RX-running] elapsed=22.000 s, packets=5172477, bytes=2648308224, pps=235112, Mb/s=963.021
+[TX] t=22.0008 pps=237882 Mb/s=974.367
+[RX-running] elapsed=23.000 s, packets=5392093, bytes=2760751616, pps=234438, Mb/s=960.261
+[TX] t=23.0011 pps=237243 Mb/s=971.746
+[RX-running] elapsed=24.000 s, packets=5632799, bytes=2883993088, pps=234699, Mb/s=961.331
+[TX] t=24.002 pps=237375 Mb/s=972.289
+[RX-running] elapsed=25.000 s, packets=5868165, bytes=3004500480, pps=234726, Mb/s=961.440
+[TX] t=25.0004 pps=237448 Mb/s=972.588
+[RX-running] elapsed=26.000 s, packets=6125634, bytes=3136324608, pps=235601, Mb/s=965.023
+[TX] t=26.0014 pps=238350 Mb/s=976.28
+[RX-running] elapsed=27.000 s, packets=6377628, bytes=3265345536, pps=236208, Mb/s=967.510
+[TX] t=27.0002 pps=238980 Mb/s=978.862
+[RX-running] elapsed=28.000 s, packets=6633659, bytes=3396433408, pps=236916, Mb/s=970.409
+[TX] t=28.0009 pps=239618 Mb/s=981.476
+[RX-running] elapsed=29.000 s, packets=6868923, bytes=3516888576, pps=236859, Mb/s=970.176
+[TX] t=29.0018 pps=239505 Mb/s=981.012
+[RX-running] elapsed=30.000 s, packets=7087223, bytes=3628658176, pps=236240, Mb/s=967.642
+[TX] t=30.0026 pps=238810 Mb/s=978.165
+
+=== FINAL TX STATS ===
+elapsed_seconds : 30.008306
+packets         : 7165929
+bytes           : 3668955648
+packets/sec     : 238798
+Mb/s            : 978.117
+
+Waiting for receiver to finish...
+[RX-running] elapsed=31.008 s, packets=7092798, bytes=3631512576, pps=228738, Mb/s=936.913
+
+=== FINAL RX STATS ===
+elapsed_seconds : 31.008967
+packets         : 7092798
+bytes           : 3631512576
+packets/sec     : 228733
+Mb/s            : 936.894
+
+Test complete.
