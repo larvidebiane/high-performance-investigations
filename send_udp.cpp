@@ -124,8 +124,6 @@ namespace {
 
     using clock = std::chrono::steady_clock;
 
-    using clock = std::chrono::steady_clock;
-
     void run_connected(int sock, const std::vector<char>& payload, const Args& a) {
         const auto start = clock::now();
         const auto end = start + std::chrono::seconds(a.duration);
