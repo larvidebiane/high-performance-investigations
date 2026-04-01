@@ -1,4 +1,6 @@
 //
+// Created by Larvi DEBIANE on 31/03/2026
+//
 // UDP Receive Benchmark
 // Strict parametric version
 // Non-blocking + full socket drain
@@ -158,13 +160,13 @@ namespace {
         double pps = stats.elapsed_seconds > 0.0 ? stats.packets / stats.elapsed_seconds : 0.0;
         double mbps = stats.elapsed_seconds > 0.0 ? (stats.bytes * 8.0) / stats.elapsed_seconds / 1e6 : 0.0;
 
-        std::cout << "[server-running] "
+        std::cout << "[RX-running] "
                   << "elapsed=" << std::fixed << std::setprecision(3) << stats.elapsed_seconds << " s, "
                   << "packets=" << stats.packets << ", "
                   << "bytes=" << stats.bytes << ", "
                   << "pps=" << static_cast<std::uint64_t>(pps) << ", "
                   << "Mb/s=" << std::setprecision(3) << mbps
-                  << '\n';
+                  << std::endl;
     }
 
     Stats run_benchmark(int fd, int duration_seconds, std::size_t buffer_size) {
@@ -212,12 +214,12 @@ namespace {
         double pps = stats.elapsed_seconds > 0.0 ? stats.packets / stats.elapsed_seconds : 0.0;
         double mbps = stats.elapsed_seconds > 0.0 ? (stats.bytes * 8.0) / stats.elapsed_seconds / 1e6 : 0.0;
 
-        std::cout << "\n=== FINAL RX STATS ===\n";
-        std::cout << "elapsed_seconds : " << std::fixed << std::setprecision(6) << stats.elapsed_seconds << "\n";
-        std::cout << "packets         : " << stats.packets << "\n";
-        std::cout << "bytes           : " << stats.bytes << "\n";
-        std::cout << "packets/sec     : " << static_cast<std::uint64_t>(pps) << "\n";
-        std::cout << "Mb/s            : " << std::setprecision(3) << mbps << "\n";
+        std::cout << "\n=== FINAL RX STATS ===" << std::endl;
+        std::cout << "elapsed_seconds : " << std::fixed << std::setprecision(6) << stats.elapsed_seconds <<  std::endl;
+        std::cout << "packets         : " << stats.packets <<  std::endl;
+        std::cout << "bytes           : " << stats.bytes <<  std::endl;
+        std::cout << "packets/sec     : " << static_cast<std::uint64_t>(pps) <<  std::endl;
+        std::cout << "Mb/s            : " << std::setprecision(3) << mbps <<  std::endl;
     }
 
 } // namespace
@@ -235,6 +237,10 @@ int main(int argc, char** argv) {
 
         int fd = create_udp_socket(cfg.port);
         if (fd < 0) return 1;
+
+        // READY is a synchronization signal for the shell script.
+        // Send it to stderr so stdout can remain dedicated to live benchmark stats.
+        std::cerr << "RX READY port=" << cfg.port << std::endl;
 
         Stats stats = run_benchmark(fd, cfg.duration_seconds, cfg.buffer_size);
 

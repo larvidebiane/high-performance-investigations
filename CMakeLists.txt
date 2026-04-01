@@ -5,3 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(kernel-bypass kernel-bypass.cpp)
 target_compile_options(kernel-bypass PRIVATE -O3 -march=native)
+
+add_executable(send_udp send_udp.cpp)
+target_compile_options(send_udp PRIVATE -O3 -march=native)
