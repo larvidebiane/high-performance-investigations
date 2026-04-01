@@ -26,7 +26,9 @@ If you don’t have CMake, you can use the Makefile to build the receiver binary
 ************
 Investigate “kernel bypass” — the thing you keep hearing about in HFT — and understand what it really buys (PPS, latency, jitter), starting from a clean UDP baseline.
 
+******************
 Work on 31/03/2026
+*******************
 
 1) First reality check: remote Mac → VPS
 
@@ -56,6 +58,7 @@ Where I’m at now (facts)
 Remote tests to the VPS are dominated by bandwidth shaping → not useful for kernel bypass investigation.
 Localhost tests are valid now (config fixed, tools strict).
 Python is not a credible sender for high PPS; it caps far below the range where “kernel bypass” becomes relevant.
+
 What I’ll do tomorrow
 Write a C/C++ UDP sender (CLI-only, deterministic) to replace Python.
 Goal: actually push into 500k PPS, 1M PPS territory without the interpreter choking first.

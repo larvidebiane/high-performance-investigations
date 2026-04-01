@@ -212,7 +212,7 @@ namespace {
         double pps = stats.elapsed_seconds > 0.0 ? stats.packets / stats.elapsed_seconds : 0.0;
         double mbps = stats.elapsed_seconds > 0.0 ? (stats.bytes * 8.0) / stats.elapsed_seconds / 1e6 : 0.0;
 
-        std::cout << "\n=== FINAL SERVER STATS ===\n";
+        std::cout << "\n=== FINAL RX STATS ===\n";
         std::cout << "elapsed_seconds : " << std::fixed << std::setprecision(6) << stats.elapsed_seconds << "\n";
         std::cout << "packets         : " << stats.packets << "\n";
         std::cout << "bytes           : " << stats.bytes << "\n";

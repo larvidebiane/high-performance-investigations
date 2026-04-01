@@ -130,7 +130,7 @@ def main():
 
     elapsed = time.monotonic() - start
 
-    print("\n=== FINAL CLIENT STATS ===")
+    print("\n=== FINAL TX STATS ===")
     print(f"elapsed_seconds : {elapsed:.6f}")
     print(f"packets         : {sent_packets}")
     print(f"bytes           : {sent_bytes}")
